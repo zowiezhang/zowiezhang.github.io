@@ -66,30 +66,34 @@
                     <!-- <h2 class="title publication-title is-4 has-text-grey"> ICCV 2023 (Oral, Best Paper Finalist)</h2> -->
                     <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://wbhu.github.io">Wenbo Hu</a><sup>1</sup>,</span>
+              <a href="https://wbhu.github.io">Zhaowei Zhang</a><sup>1,2</sup>,</span>
                         <span class="author-block">
-              <a href="https://wbhu.github.io/projects/Tri-MipRF">Yuling Wang</a><sup>2</sup>,</span>
+              <a href="https://changwinde.github.io">Fengshuo Bai</a><sup>3,4</sup>,</span>
                         <span class="author-block">
-              <a href="https://wbhu.github.io/projects/Tri-MipRF">Lin Ma</a><sup>1</sup>,
+              <a href="https://zowiezhang.github.io/projects/Amulet">Qizhi Chen</a><sup>1</sup>,
             </span>
                         <span class="author-block">
-              <a href="https://ybbbbt.com">Bangbang Yang</a><sup>1</sup>,
+              <a href="https://cdm1619.github.io">Chengdong Ma</a><sup>1</sup>,
             </span>
                         <span class="author-block">
-              <a href="http://geometrylearning.com/lin">Lin Gao</a><sup>3</sup>,
+              <a href="https://zowiezhang.github.io/projects/Amulet">Mingzhi Wang</a><sup>1</sup>,
             </span>
                         <span class="author-block">
-              <a href="https://wbhu.github.io/projects/Tri-MipRF">Xiao Liu</a><sup>1</sup>,
+              <a href="https://zowiezhang.github.io/projects/Amulet">Haoran Sun</a><sup>1</sup>,
             </span>
                         <span class="author-block">
-              <a href="https://wbhu.github.io/projects/Tri-MipRF">Yuewen Ma</a><sup>1</sup>
+              <a href="https://zilongzheng.github.io">Zilong Zheng</a><sup>2</sup>
+            </span>
+                        <span class="author-block">
+              <a href="https://www.yangyaodong.com">Yaodong Yang</a><sup>1</sup>
             </span>
                     </div>
 
                     <div class="is-size-5 publication-authors">
-                        <span class="author-block"><sup>1</sup>PICO, ByteDance, Beijing</span>
-                        <span class="author-block"><sup>2</sup>Tsinghua University</span>
-                        <span class="author-block"><sup>3</sup>Institute of Computing Technology, CAS</span>
+                        <span class="author-block"><sup>1</sup>Peking University</span>
+                        <span class="author-block"><sup>2</sup>BIGAI</span>
+                        <span class="author-block"><sup>3</sup>Shanghai Jiao Tong University</span>
+                        <span class="author-block"><sup>4</sup>Zhongguancun Academy</span>
                     </div>
 
                     <div class="column has-text-centered">
@@ -105,7 +109,7 @@
                 </a>
               </span>
                             <span class="link-block">
-                <a href="https://arxiv.org/abs/2307.11335"
+                <a href="https://arxiv.org/abs/2310.00378"
                    class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                       <i class="ai ai-arxiv"></i>
@@ -151,6 +155,15 @@
 </section>
 
 
+<div class="columns is-centered">
+    <div class="container is-max-desktop">
+        <div class="content has-text-justified">
+            <p>
+                <b>TL;DR</b>: We introduce Amulet, a training-free framework that enables real-time optimization to satisfy user's personalized preferences for LLMs at test time.
+            </p>
+        </div>
+    </div>
+</div>
 
 <section class="section">
     <div class="container is-max-desktop">
@@ -160,26 +173,13 @@
                 <h2 class="title is-3">Abstract</h2>
                 <div class="content has-text-justified">
                     <p>
-                        Despite the tremendous progress in neural radiance fields (NeRF), we still face a dilemma of the
-                        trade-off between quality and efficiency, <i>e.g.</i>, MipNeRF presents fine-detailed and
-                        anti-aliased renderings but takes days for training, while Instant-ngp can accomplish the
-                        reconstruction in a few minutes but suffers from blurring or aliasing when rendering at various
-                        distances or resolutions due to ignoring the sampling area.
+                        How to align large language models (LLMs) with user preferences from a static general dataset has been frequently studied. However, user preferences are usually personalized, changing, and diverse regarding culture, values, or time. This leads to the problem that the actual user preferences often do not coincide with those trained by the model developers in the practical use of LLMs. Since we cannot collect enough data and retrain for every demand, researching efficient real-time preference adaptation methods based on the backbone LLMs during test time is important.
                     </p>
                     <p>
-                        To this end, we propose a novel Tri-Mip encoding (à la “mipmap”) that enables both instant
-                        reconstruction and anti-aliased high-fidelity rendering for neural radiance fields. The key is
-                        to factorize the pre-filtered 3D feature spaces in three orthogonal mipmaps. In this way, we can
-                        efficiently perform 3D area sampling by taking advantage of 2D pre-filtered feature maps, which
-                        significantly elevates the rendering quality without sacrificing efficiency. To cope with the
-                        novel Tri-Mip representation, we propose a cone-casting rendering technique to efficiently
-                        sample anti-aliased 3D features with the Tri-Mip encoding considering both pixel imaging and
-                        observing distance.
+                        To this end, we introduce <b>Amulet</b>, a novel, training-free framework that formulates the decoding process of every token as a separate online learning problem with the guidance of simple user-provided prompts, thus enabling real-time optimization to satisfy users' personalized preferences. To reduce the computational cost brought by this optimization process for each token, we additionally provide a closed-form solution for each iteration step of the optimization process, thereby reducing the computational time cost to a negligible level.
                     </p>
                     <p>
-                        Extensive experiments on both synthetic and real-world datasets demonstrate our method achieves
-                        state-of-the-art rendering quality and reconstruction speed while maintaining a compact
-                        representation that reduces 25% model size compared against Instant-ngp.
+                        The detailed experimental results demonstrate that Amulet can achieve significant performance improvements in rich settings with combinations of different LLMs, datasets, and user preferences, while maintaining acceptable computational efficiency.
                     </p>
                 </div>
             </div>
@@ -187,7 +187,7 @@
         <!--/ Abstract. -->
 
         <!--         Paper video.-->
-        <div class="columns is-centered has-text-centered">
+        <!-- <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
                 <h2 class="title is-3">Video</h2>
                 <div class="publication-video">
@@ -198,7 +198,7 @@
                             allowfullscreen></iframe>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--        / Paper video.-->
     </div>
 </section>
@@ -216,45 +216,44 @@
                 <!--                <h3 class="title is-4">Overview</h3>-->
                 <div class="content has-text-justified">
                     <div class="container is-max-desktop has-text-centered">
-                        <img src="img/overview.jpg" width="100%">
+                        <img src="img/method.jpg" width="100%">
                     </div>
                     <p>
-                        To render a pixel, we emit a <b>cone</b> from the camera’s projection center to the pixel on the
-                        image plane, and then we cast a set of spheres inside the cone. Next, the spheres are
-                        orthogonally projected
-                        on the three planes and featurized by our <b>Tri-Mip encoding</b>. After that the feature
-                        vector is fed into the tiny MLP to non-linearly map to
-                        density and color. Finally, the density and
-                        color of the spheres are integrated using volume rendering to produce final color for the pixel.
+                        The figure is intersected by an axis, with each node on the axis displaying a different distribution that shows the constantly changing user personalized preferences due to factors like time, value, need, and context, as illustrated by the part (a). The part (b) shows that existing methods mostly consider aligning LLMs with general preferences from a static dataset, which may result in misalignment in dynamically personalized scenarios. In the part (c), we have enlarged one of the preference nodes to show the processing of our Amulet framework. We formulate the decoding process of every token as a separate online learning problem and further adapt the backbone LLMs to align with the current user preference through a real-time optimization process with the guidance of user-provided prompts. The red token means the current processing token, which will be the condition for the next token prediction.
                     </p>
                 </div>
                 <!--/ Overview. -->
 
                 <h2 class="title is-3">Results</h2>
 
-                <h3 class="title is-4">Quality <i>vs.</i> Reconstruction time</h3>
+                <h3 class="title is-4">ArmoRM Metric</h3>
                 <div class="container is-max-desktop has-text-centered">
-                    <img src="img/teaser.jpg" width="50%">
+                    <img src="img/main_rst.png" width="100%">
                 </div>
                 <p>
-                    Our Tri-MipRF achieves state-of-the-art rendering quality while can be reconstructed efficiently,
-                    compared with cutting-edge radiance fields methods, <i>e.g.,</i> NeRF, MipNeRF, Plenoxels,
-                    TensoRF, and Instant-ngp. Equipping Instant-ngp with super-sampling (named Instant-ngp<sup>↑5×</sup>)
-                    improves the rendering quality to a certain extent but significantly slows down the reconstruction.
+                    Results of our Amulet framework and all the other baselines on various combination settings of LLMs, user preferences, and datasets. All results are the arithmetic averages of the reward model scores on each dataset. The bold text in the table indicates the best performance under that setting. The colors in the table represent the percentage improvement of that method in the current setting relative to the Base method, with more positive growth bluer and more negative growth redder.
+                </p>
+                <br>
+                <div class="container is-max-desktop has-text-centered">
+                    <img src="img/armo_rst.png" width="100%">
+                </div>
+                <p>
+                    The percentage of the highest scores (win rate) for the 64 groups of experiments across all the methods with different user preferences and LLMs. 
+                <!-- </p>
+                <p> -->
+                    As shown in the left plot of the figure, from the win rate of our method in the 16 experiments conducted for each preference, the highest-ranking preference is creative, reaching 93.8%. Following that are uplifting (81.2%), concise (75%), and verbose (50%). 
+                <!-- </p>
+                <p> -->
+                    As shown in the right part, the following models are Llama-2-7B-Chat (75%), Mistral-7B-Instruct-v0.2 (68.8%), and QWen2-7B-Instruct (56.2%). Our method shows win rate improvements of these three models are 200%, 121%, and 49.9%, respectively, compared to the current SOTA method, LA. These experimental results demonstrate our method’s effectiveness in enhancing the alignment of model responses with user preferences across various LLMs. 
                 </p>
                 <br>
 
-                <h3 class="title is-4">In-the-wild Captures</h3>
+                <h3 class="title is-4">GPT-4o Win Rate</h3>
                 <div class="container is-max-desktop hasxt-centered">
-                    <img src="img/in_the_wild.jpg" width="100%">
+                    <img src="img/gpt_rst.png" width="100%">
                 </div>
                 <p>
-                    To further demonstrate the applicability, we captured several objects in the wild, performed SFM
-                    on the sequence to estimate the camera’s intrinsic and extrinsic parameters, and applied our
-                    Tri-MipRF to reconstruct them. We show three example results here, where we can see the rendered
-                    novel views faithfully reproduce the
-                    detailed structures and appearances, and the PSNR/SSIM
-                    values also evidence the applicability of our method.
+                    Detailed results on the GPT-4o win rate among Amulet versus all the other baselines (Base, Pref, BS16, and LA) on the Personal dataset. The first row of the figure shows the average win rate of Amulet for all the preferences and the second row for all the LLMs. As shown in figure, Amulet achieved the highest win rate in all tasks. Even the QWen2-7B model, which performed relatively weakly under the ArmoRM metric, achieved a least win rate of 62.2%.
                 </p>
                 <br>
 
@@ -278,7 +277,7 @@
 
 
         <!-- Concurrent Work. -->
-        <div class="columns is-centered">
+        <!-- <div class="columns is-centered">
             <div class="column is-full-width">
                 <h2 class="title is-3">Related Links</h2>
 
@@ -291,7 +290,7 @@
                     </p>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--/ Concurrent Work. -->
 
     </div>
